@@ -1,4 +1,4 @@
-# 🚀 Inaris — Plateforme de Recherche de Stages
+# 🚀 **Inaris** — Plateforme de Recherche de Stages
 
 **Projet** – Baccalauréat Professionnel **CIEL**  
 (**Cybersécurité, Informatique et réseaux, Électronique**)
@@ -25,7 +25,7 @@ L’objectif était de faciliter la **recherche de stage** en affichant les entr
   - Configuration **Fail2ban**
   - Pare-feu **UFW**
   - Headers de sécurité **Nginx***
-  - Conteneurs **Docker** sécurisés (read-only, no-new-privileges…)
+  - Conteneurs **Docker** sécurisés (**read-only**, **no-new-privileges**…)
 
 ---
 
@@ -45,4 +45,4 @@ Merci à **[@mathmart](https://github.com/mathmart-AI)** pour son aide sur le pr
 
 ## Auteur
 
-Projet réalisé dans le cadre de mon Bac Pro CIEL.
+Projet réalisé dans le cadre de mon **Bac Pro Cybersécurité, Informatique et réseaux, Électronique**.
