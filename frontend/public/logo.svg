@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <!-- Dégradé violet vers rose comme le site -->
+    <linearGradient id="mainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4C1D95;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#7C3AED;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Ombre portée -->
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Cercle de fond avec dégradé -->
+  <circle cx="100" cy="100" r="90" fill="url(#mainGrad)" filter="url(#shadow)"/>
+  
+  <!-- Lettre I blanche et stylée - CENTRÉE -->
+  <g filter="url(#shadow)">
+    <rect x="85" y="70" width="30" height="80" rx="15" fill="white"/>
+    <circle cx="100" cy="50" r="15" fill="white"/>
+  </g>
+</svg>

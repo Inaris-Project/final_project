@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+  backend:
+    build: ./backend
+    container_name: inaris-backend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3001:3001"
+    environment:
+      - PORT=3001
+      - FRONTEND_URL=https://inaris.eu
+      - NODE_ENV=production
+      - SERPAPI_KEY=${SERPAPI_KEY}
+    networks:
+      - inaris-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+
+  frontend:
+    build: ./frontend
+    container_name: inaris-frontend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:80"
+    depends_on:
+      - backend
+    networks:
+      - inaris-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 128M
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/cache/nginx
+      - /var/run
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  inaris-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
