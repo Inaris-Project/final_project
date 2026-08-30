@@ -1,88 +1,48 @@
 # 🚀 Inaris — Plateforme de Recherche de Stages
 
-> Application web permettant aux étudiants de rechercher des entreprises pour leurs stages via une recherche géolocalisée en temps réel.
-
-🌐 **Production** → [https://inaris.eu](https://inaris.eu)
-
----
-
-## 🖥️ Infrastructure
-
-| Élément     | Valeur                            |
-|-------------|-----------------------------------|
-| Hébergeur   | OVH VPS                           |
-| IP          | 141.95.86.121                     |
-| OS          | Debian GNU/Linux 13 (trixie)      |
-| Domaine     | inaris.eu (DNS IONOS)             |
-| SSL         | Let's Encrypt — renouvellement auto|
+**Projet** – Baccalauréat Professionnel **CIEL**  
+(**Cybersécurité, Informatique et réseaux, Électronique**)
 
 ---
 
-## 🏗️ Architecture
-```
-Internet (HTTPS :443)
-        │
-   [ Nginx — Reverse Proxy ]
-        ├── /       → :8080 → inaris-frontend (React)
-        └── /api/   → :3001 → inaris-backend  (Express + SerpAPI)
+## Présentation
 
-Réseau Docker interne : 172.20.0.0/24
-```
+Inaris était une application web destinée aux étudiants.  
+Elle permettait de **rechercher des entreprises pour un stage** grâce à une **recherche géolocalisée en temps réel** avec l'api [SerpAPI](https://serpapi.com/)
+
+L’objectif était de faciliter la **recherche de stage** en affichant les entreprises proches de l’utilisateur.
 
 ---
 
-## 🗂️ Arborescence
-```
-inaris/
-├── backend/           # API Express.js (port 3001)
-├── frontend/          # App React + Tailwind (port 8080)
-├── patches/
-│   └── example_system/
-│       ├── deploy.sh
-│       └── configs/
-│           ├── nginx_host.conf        # Reverse proxy + SSL
-│           ├── fail2ban_jail.local    # Protection brute-force
-│           └── ssh_hardening.conf     # Durcissement SSH
-├── docker-compose.yml
-├── RUNBOOK.md         # Documentation opérationnelle complète
-└── .env               # SERPAPI_KEY (non versionné)
-```
+## Travail réalisé
+
+- Développement frontend (React + Tailwind)
+- Développement backend (Node.js / Express)
+- Intégration d’une **API** de recherche d’entreprises
+- Mise en place de l’architecture __**Docker + Nginx**__
+- **Travail approfondi sur la sécurité Linux** :
+  - Durcissement **SSH**
+  - Configuration **Fail2ban**
+  - Pare-feu **UFW**
+  - Headers de sécurité **Nginx***
+  - Conteneurs **Docker** sécurisés (read-only, no-new-privileges…)
 
 ---
 
-## 🔐 Sécurité mise en place
+## Captures d’écran
 
-- **UFW** — Firewall, seuls les ports 80, 443 et 2222 sont ouverts
-- **Fail2ban** — Ban automatique après 3 tentatives SSH (24h)
-- **Nginx** — Rate limiting, headers HTTP sécurisés, blocage bots
-- **Docker** — Conteneurs read-only, no-new-privileges, ressources limitées
-- **SSH** — Port 2222, root désactivé, authentification par clé uniquement
-- **SSL** — TLS 1.2/1.3, HSTS preload
+| Accueil | Recherche géolocalisée | Fiche entreprise |
+|---------|------------------------|------------------|
+| ![Accueil](screenshots/accueil.png) | ![Résultats](screenshots/resultats.png) | ![Fiche](screenshots/Guides.png) |
 
 ---
 
-## ⚙️ Commandes essentielles
-```bash
-# État des conteneurs
-sudo docker ps
+## Remerciements
 
-# Logs backend / frontend
-sudo docker logs -f inaris-backend
-sudo docker logs -f inaris-frontend
-
-# Rebuild après modification
-cd ~/inaris && sudo docker compose down && sudo docker compose up -d --build
-
-# Recharger Nginx
-sudo nginx -t && sudo systemctl reload nginx
-
-# IPs bannies
-sudo fail2ban-client status sshd
-
-# Health check
-curl https://inaris.eu/api/health
-```
+Merci à **[@mathmart](https://github.com/mathmart-AI)** pour son aide sur le projet.
 
 ---
 
-> 📖 Documentation opérationnelle complète → [RUNBOOK.md](./RUNBOOK.md)
+## Auteur
+
+Projet réalisé dans le cadre de mon Bac Pro CIEL.
